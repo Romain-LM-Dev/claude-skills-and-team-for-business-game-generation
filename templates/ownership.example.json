@@ -1,0 +1,73 @@
+{
+  "version": 1,
+  "agents": {
+    "orchestrateur": [],
+    "architecte": [
+      "docs/decisions/**",
+      "src/game/spec.py",
+      "src/messaging/topics.py"
+    ],
+    "game-designer": [
+      "content/simulation.yaml",
+      "content/domains.yaml",
+      "content/packs/**"
+    ],
+    "moteur-simulation": [
+      "src/game/**",
+      "tests/test_engine.py",
+      "tests/test_generation.py",
+      "tests/test_npc.py"
+    ],
+    "backend-api": [
+      "src/api/**",
+      "src/db/**",
+      "migrations/**",
+      "tests/test_api.py"
+    ],
+    "client-dev": [
+      "client/**",
+      "!client/assets/**"
+    ],
+    "ia-runtime": [
+      "content/models.yaml",
+      "content/prompts/**",
+      "content/evals/**",
+      "src/llm/**"
+    ],
+    "rag-knowledge": [
+      "src/rag/**",
+      "knowledge/**"
+    ],
+    "pipeline-evenements": [
+      "src/messaging/**",
+      "src/workers/**"
+    ],
+    "assets": [
+      "content/assets.yaml",
+      "client/assets/**"
+    ],
+    "devops": [
+      "docker-compose.yml",
+      "infra/**",
+      "scripts/**",
+      ".github/**",
+      ".gitignore"
+    ],
+    "qa-reviewer": [
+      "tests/**"
+    ],
+    "documentaliste": [
+      "docs/**",
+      "!docs/decisions/**",
+      "README.md",
+      "CLAUDE.md",
+      ".claude/**"
+    ],
+    "coach-equipe": [
+      "docs/equipe/**"
+    ]
+  },
+  "shared": [
+    "tests/**"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "skills-and-team-business-game",
+  "owner": { "name": "Romain LE MOAL" },
+  "description": "Équipe d'agents et skills pour les projets de génération de business games.",
+  "plugins": [
+    {
+      "name": "team-for-business-game-generation",
+      "source": "./",
+      "description": "Équipe d'agents pour générateur de business games (moteur déterministe, PNJ IA sourcés, rôles joueur, formateur, admin) et skill de méthode du moteur."
+    }
+  ]
+}

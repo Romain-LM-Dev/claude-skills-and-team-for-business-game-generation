@@ -1,0 +1,112 @@
+<div align="center">
+
+🇫🇷 Français | 🇬🇧 [English](README.en.md)
+
+</div>
+
+# claude-skills-and-team-for-business-game-generation
+
+Une équipe d'agents Claude Code pour les projets de génération de business games : un formateur choisit des
+paramètres, un moteur déterministe assemble et calcule la simulation, des PNJ IA disent les faits calculés. L'équipe est
+issue du projet G-mix, généralisée pour être réutilisée dans tout projet du même type, quelle que soit la stack.
+Principe : peu d'agents, des descriptions courtes, le modèle adapté à la tâche (haiku pour le mécanique, sonnet pour
+le code, opus pour la conception et l'exactitude métier), des briefs complets.
+
+Dépôt frère, équipe générique pour tout projet : [claude-skills-and-team-for-every-project](https://github.com/Romain-LM-Dev/claude-skills-and-team-for-every-project).
+
+## Contenu
+
+Agents du noyau (business game) :
+
+| Agent | Rôle | Modèle |
+|---|---|---|
+| `orchestrateur` | découpe, délègue, contrôle, rend un bilan ; sans outil d'édition ni shell | celui de la session |
+| `architecte` | choix transverse, ADR, contrats (spec, événements, endpoints), plan d'exécution | opus |
+| `game-designer` | justesse métier, chiffres, sources, objectifs pédagogiques, PNJ, débrief | opus |
+| `moteur-simulation` | moteur déterministe, génération depuis une spec, logique et repli des PNJ | sonnet |
+| `ia-runtime` | tâches IA, prompts des PNJ, budgets, évaluations des dialogues | sonnet |
+| `rag-knowledge` | ingestion, recherche, corpus, sources et droits | sonnet |
+| `qa-reviewer` | relit le diff, écrit les tests, lance les vérifications, joue le parcours de bout en bout | sonnet |
+| `documentaliste` | docs, CLAUDE.md, `.claude/` du projet, création d'agents | sonnet |
+| `coach-equipe` | rétrospective mesurée, trois propositions au plus | opus |
+
+Agents optionnels, selon la stack (Godot, Unity, FastAPI, Kafka, etc. ne sont que des exemples) :
+
+| Agent | Rôle | Modèle |
+|---|---|---|
+| `client-dev` | client 3D ou front web, HUD, panneaux par rôle | sonnet |
+| `backend-api` | API, rôles, base, migrations | sonnet |
+| `pipeline-evenements` | bus d'événements et workers asynchrones | sonnet |
+| `assets` | catalogue d'assets, licences, couverture | sonnet |
+| `devops` | conteneurs, scripts, environnement | haiku |
+
+Skill : `moteur-business-game`, méthode du moteur (fonctions pures, spec validée, pilote automatique, calibrage, PNJ).
+Modèles à copier dans un projet, dans `templates/` : `CLAUDE.template.md` (tableau des agents, règles d'organisation,
+brief, compte rendu, règles business game) et `ownership.example.json` (carte de propriété).
+
+Pour l'exploration en lecture seule, utiliser l'agent intégré `Explore`.
+
+## Installation dans Claude Code
+
+Plugin, une fois le dépôt publié, dans une session :
+
+```
+/plugin marketplace add Romain-LM-Dev/claude-skills-and-team-for-business-game-generation
+/plugin install team-for-business-game-generation@skills-and-team-business-game
+```
+
+Essai local sans installer : `claude --plugin-dir <dossier-du-dépôt>`. Les agents du plugin s'appellent
+`team-for-business-game-generation:orchestrateur`, etc.
+
+Copie manuelle :
+1. copier les agents voulus de `agents/` dans `.claude/agents/` du projet (ou `~/.claude/agents/`) ;
+2. copier `skills/moteur-business-game/` dans `.claude/skills/` ;
+3. copier `templates/CLAUDE.template.md` en `CLAUDE.md` à la racine du projet, le remplir, et supprimer les lignes des
+   agents non installés ;
+4. copier `templates/ownership.example.json` en `.claude/ownership.json` et adapter les motifs de fichiers.
+
+Les agents ne contiennent ni chemin, ni port, ni commande : la stack et les dossiers sont définis dans le `CLAUDE.md`
+du projet, auquel ils renvoient.
+
+## Activer l'orchestrateur
+
+Il n'est pas forcé : il coûte plus qu'il n'économise sur une petite tâche. Pour un projet à plusieurs domaines :
+
+- une session : `claude --agent team-for-business-game-generation:orchestrateur` ;
+- en permanence pour un projet : dans `.claude/settings.json` du projet,
+  `{ "agent": "team-for-business-game-generation:orchestrateur" }`.
+
+## Principes business game
+
+- **Connaissances vraies et sourcées** : chaque notion et chaque chiffre est un fait sourcé, un choix de calibrage ou
+  une valeur illustrative, et le dit ; sans source, « à vérifier ».
+- **Moteur déterministe** : la simulation est calculée par des fonctions pures à partir d'une spec validée, avec un
+  hasard dérivé de la graine ; une partie en pilote automatique doit la terminer.
+- **PNJ IA factuels** : ils ne disent que les faits calculés par le moteur, avec une mémoire bornée et un repli
+  déterministe.
+- **Tâche IA, jamais un modèle** : le code appelle une tâche d'un catalogue ; le modèle choisit, dit ou classe, le
+  moteur calcule.
+- **Débrief pédagogique** appuyé sur des événements réellement survenus ; un jeu non testé reste un prototype.
+- **Rôles** joueur, formateur (ses lobbies) et admin, vérifiés côté serveur.
+
+## Utiliser la skill dans claude.ai
+
+Les agents ne tournent pas dans le chat claude.ai ; seules les skills s'y importent, par ZIP.
+
+```powershell
+.\scripts\package-skills.ps1
+```
+
+Le script écrit un ZIP par skill dans `dist/` (ignoré par git), après avoir vérifié `name` (64 caractères au plus,
+identique au dossier) et `description` (200 au plus). Puis, dans claude.ai : Customize, Skills, Upload.
+
+## Validation
+
+```
+claude plugin validate .
+claude plugin validate . --strict
+```
+
+## Licence
+
+Licence source-available non commerciale : voir `LICENSE.md`. Usage commercial sur autorisation écrite du titulaire.
