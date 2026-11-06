@@ -40,7 +40,11 @@ Agents optionnels, selon la stack (Godot, Unity, FastAPI, Kafka, etc. ne sont qu
 | `assets` | catalogue d'assets, licences, couverture | sonnet |
 | `devops` | conteneurs, scripts, environnement | haiku |
 
-Skill : `moteur-business-game`, méthode du moteur (fonctions pures, spec validée, pilote automatique, calibrage, PNJ).
+Skills :
+- `moteur-business-game`, méthode du moteur (fonctions pures, spec validée, pilote automatique, calibrage, PNJ) ;
+- `business-game-designer`, conception de business games et de simulations de formation (préchargée par game-designer) ;
+- `mesure-equipe`, mesure de l'équipe sur les transcripts et contrôle de la carte de propriété (préchargée par coach-equipe).
+
 Modèles à copier dans un projet, dans `templates/` : `CLAUDE.template.md` (tableau des agents, règles d'organisation,
 brief, compte rendu, règles business game) et `ownership.example.json` (carte de propriété).
 
@@ -56,11 +60,12 @@ Plugin, une fois le dépôt publié, dans une session :
 ```
 
 Essai local sans installer : `claude --plugin-dir <dossier-du-dépôt>`. Les agents du plugin s'appellent
-`team-for-business-game-generation:orchestrateur`, etc.
+`team-for-business-game-generation:orchestrateur`, etc. Les skills préchargées par un agent ne s'appliquent que
+quand l'agent est lancé en sous-agent par l'orchestrateur.
 
 Copie manuelle :
 1. copier les agents voulus de `agents/` dans `.claude/agents/` du projet (ou `~/.claude/agents/`) ;
-2. copier `skills/moteur-business-game/` dans `.claude/skills/` ;
+2. copier les dossiers de `skills/` dans `.claude/skills/` ;
 3. copier `templates/CLAUDE.template.md` en `CLAUDE.md` à la racine du projet, le remplir, et supprimer les lignes des
    agents non installés ;
 4. copier `templates/ownership.example.json` en `.claude/ownership.json` et adapter les motifs de fichiers.

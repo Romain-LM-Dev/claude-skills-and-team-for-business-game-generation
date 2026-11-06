@@ -21,7 +21,7 @@ Matériel et limites : <mémoire GPU, RAM, budget>.
 
 ## Commandes
 - Lancer : `<commande>` ; arrêter : `<commande>`
-- Tests : `<commande>` ; mesure de l'équipe : `<commande ou "aucune">`
+- Tests : `<commande>` ; mesure de l'équipe : skill `mesure-equipe` du plugin (par défaut) ou `<commande propre au projet>`
 
 ## Agents (.claude/agents) : équipe et organisation
 La session principale peut tourner en `orchestrateur` (clé `agent` de `.claude/settings.json` du projet, ou

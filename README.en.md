@@ -40,7 +40,11 @@ Optional agents, depending on the stack (Godot, Unity, FastAPI, Kafka, etc. are 
 | `assets` | asset catalog, licenses, coverage | sonnet |
 | `devops` | containers, scripts, environment | haiku |
 
-Skill: `moteur-business-game`, the engine method (pure functions, validated spec, autopilot, calibration, NPCs).
+Skills:
+- `moteur-business-game`, the engine method (pure functions, validated spec, autopilot, calibration, NPCs);
+- `business-game-designer`, design of business games and training simulations (preloaded by game-designer);
+- `mesure-equipe`, measures the team from transcripts and checks the ownership map (preloaded by coach-equipe).
+
 Templates to copy into a project, in `templates/`: `CLAUDE.template.md` (agent table, organization rules, brief,
 report, business game rules) and `ownership.example.json` (ownership map).
 
@@ -56,11 +60,12 @@ As a plugin, once the repository is published, in a session:
 ```
 
 Local trial without installing: `claude --plugin-dir <dossier-du-dépôt>`. The plugin's agents are named
-`team-for-business-game-generation:orchestrateur`, and so on.
+`team-for-business-game-generation:orchestrateur`, and so on. Skills preloaded by an agent only apply when the
+orchestrator launches that agent as a subagent.
 
 Manual copy:
 1. copy the agents you want from `agents/` into the project's `.claude/agents/` (or `~/.claude/agents/`);
-2. copy `skills/moteur-business-game/` into `.claude/skills/`;
+2. copy the folders of `skills/` into `.claude/skills/`;
 3. copy `templates/CLAUDE.template.md` to `CLAUDE.md` at the project root, fill it in, and delete the lines for the
    agents you did not install;
 4. copy `templates/ownership.example.json` to `.claude/ownership.json` and adapt the file patterns.
