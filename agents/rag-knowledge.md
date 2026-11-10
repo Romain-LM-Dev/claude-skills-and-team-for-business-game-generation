@@ -1,6 +1,6 @@
 ---
 name: rag-knowledge
-description: Ingénieur RAG et base de connaissances des business games. À utiliser pour l'ingestion de documents (PDF, Markdown), le découpage, les embeddings, la recherche (vectorielle et plein texte), la qualité des passages retrouvés, l'organisation du corpus par domaine et la traçabilité des sources et de leurs droits.
+description: Ingénieur RAG et base de connaissances des business games. À utiliser pour l'ingestion de documents, le découpage, les embeddings, la recherche, la qualité des passages retrouvés, le corpus par domaine et la traçabilité des sources et de leurs droits.
 tools: Read, Edit, Write, Glob, Grep, PowerShell, Bash, WebSearch, WebFetch
 model: sonnet
 effort: low

@@ -21,12 +21,14 @@ Matériel et limites : <mémoire GPU, RAM, budget>.
 
 ## Commandes
 - Lancer : `<commande>` ; arrêter : `<commande>`
-- Tests : `<commande>` ; mesure de l'équipe : skill `mesure-equipe` du plugin (par défaut) ou `<commande propre au projet>`
+- Tests : `<commande>` ; mesure de l'équipe : skill `mesure-equipe` du plugin `team-for-every-project` (par défaut)
+  ou `<commande propre au projet>`
 
-## Agents (.claude/agents) : équipe et organisation
-La session principale peut tourner en `orchestrateur` (clé `agent` de `.claude/settings.json` du projet, ou
-`claude --agent orchestrateur`). Si le plugin est installé, les noms sont préfixés
-(`team-for-business-game-generation:orchestrateur`).
+## Agents : équipe et organisation
+Orchestrateur, architecte, qa-reviewer, documentaliste et coach-equipe viennent du plugin `team-for-every-project`,
+les agents métier du plugin `team-for-business-game-generation` ; installés en plugin, leurs noms sont préfixés
+(`team-for-every-project:orchestrateur`). La session principale peut tourner en orchestrateur (clé `agent` de
+`.claude/settings.json` du projet, ou `claude --agent team-for-every-project:orchestrateur`).
 
 | Agent | Modèle | Possède | À lui pour |
 |---|---|---|---|
@@ -55,8 +57,11 @@ tenir cohérente avec ce tableau.
   lignes, décisions), périmètre, critère de fin, compte rendu attendu.
 - Compte rendu : fait · fichiers · vérifié (commande -> résultat réel) · reste et risques. Jamais « terminé » sans
   résultat de commande ; une vérification non lancée ou en échec est écrite telle quelle.
-- Fin de chantier : `qa-reviewer` (tests complets), puis `documentaliste` si un comportement, un contrat ou une
-  commande a changé.
+- Une demande sur les règles, les chiffres, les sources ou le débrief passe d'abord par `game-designer`.
+- Correctif de bug : reproduire d'abord, corriger la cause par le plus petit changement prouvé, citer la reproduction
+  avant (échec) et après (succès).
+- Fin de chantier : `qa-reviewer` (tests complets, points de relecture ci-dessous), puis `documentaliste` si un
+  comportement, un contrat ou une commande a changé.
 - Mécanique -> haiku, code -> sonnet, conception et exactitude métier -> opus.
 - Tâche sans compétence correspondante : ajouter la compétence à l'agent concerné, ou créer l'agent si le domaine
   n'est pas couvert (brief à `documentaliste`) ; jamais `general-purpose`.
@@ -72,9 +77,19 @@ tenir cohérente avec ce tableau.
   formateur relit avant publication.
 - Débrief pédagogique appuyé sur des événements réellement survenus ; un jeu non testé est un prototype.
 - Rôles joueur, formateur, admin vérifiés côté serveur.
+- Bus d'événements (s'il existe) : commandes, événements et traitements asynchrones, jamais le temps réel du client.
 - Aucun secret dans le dépôt ; pas de commit ni de push sans demande explicite de l'utilisateur.
 - Coût : fichier de plus de 300 lignes = Grep puis Read avec plage ; ne jamais relire un fichier non modifié ;
   compte rendu de 15 lignes au plus.
+
+## Points de relecture business game (qa-reviewer)
+- Règle de jeu ou chiffre métier hors du moteur (API, client) ; hasard ou horloge dans le moteur.
+- Appel IA hors du catalogue de tâches, budget de tokens non borné, message de joueur capable de changer le rôle d'un
+  PNJ (injection).
+- Route ou canal temps réel sans contrôle de rôle côté serveur.
+- Fait ou chiffre pédagogique sans source, ou présenté comme sourcé sans l'être : Bloquant, renvoyé à `game-designer`.
+- Chantier touchant le jeu, l'API, les PNJ ou le client : parcours de bout en bout sur la pile réelle (générer un jeu,
+  lobby, actions, dialogue, tours, débrief), avec des comptes de test jetables, supprimés ensuite.
 
 ## Documentation
 À lire en premier : <cahier des attentes>, <point de reprise>. Ensuite : ADR, architecture, game design, IA.

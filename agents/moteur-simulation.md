@@ -1,6 +1,6 @@
 ---
 name: moteur-simulation
-description: Développeur du moteur de simulation et de la génération des business games. À utiliser pour le moteur (tour simulé, actions, informations des PNJ), la génération d'un jeu à partir de paramètres, les modèles de la spec, ajouter côté code une action, un module, un aléa ou un secteur, calibrer la partie de référence, et les réponses de secours des PNJ quand le modèle IA ne répond pas.
+description: Développeur du moteur de simulation et de la génération des business games. À utiliser pour le tour simulé, les actions, la génération depuis une spec, un nouveau module, aléa ou secteur, le calibrage et les réponses de secours des PNJ.
 tools: Read, Edit, Write, Glob, Grep, PowerShell, Bash
 model: sonnet
 effort: medium

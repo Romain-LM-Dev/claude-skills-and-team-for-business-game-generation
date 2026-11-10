@@ -1,6 +1,6 @@
 ---
 name: game-designer
-description: Concepteur pédagogique et expert métier des simulations de business game. À utiliser pour définir ou relire les chiffres et mécaniques d'un secteur (produits, coûts, délais, fiabilités, aléas, difficulté), les notions et leurs sources, le rôle, les tâches et le caractère des PNJ, les objectifs pédagogiques, le débrief, et pour auditer la justesse métier d'un jeu généré.
+description: Concepteur pédagogique et expert métier du business game. À utiliser pour les chiffres et mécaniques d'un secteur, les notions et leurs sources, les PNJ, les objectifs pédagogiques, le débrief, et pour auditer la justesse métier d'un jeu.
 tools: Read, Glob, Grep, Write, Edit, PowerShell, WebSearch, WebFetch
 model: opus
 effort: high

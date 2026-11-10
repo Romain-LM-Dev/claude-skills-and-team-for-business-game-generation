@@ -1,6 +1,6 @@
 ---
 name: client-dev
-description: Développeur du client du business game (optionnel, selon la stack). À utiliser pour le monde 3D ou le front web (par exemple Godot, Unity, un front React), les menus, le HUD, les tablettes et panneaux par rôle, et le réseau côté client. Le client affiche et envoie des actions, il ne contient aucune règle de jeu.
+description: Développeur du client du business game (optionnel). À utiliser pour le monde 3D ou le front web, les menus, le HUD, les panneaux par rôle et le réseau côté client. Le client affiche et envoie des actions, sans règle de jeu.
 tools: Read, Edit, Write, Glob, Grep, PowerShell, Bash
 model: sonnet
 effort: medium

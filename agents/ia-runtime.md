@@ -1,6 +1,6 @@
 ---
 name: ia-runtime
-description: Ingénieur de la couche IA runtime des business games. À utiliser pour le routage tâche vers modèle, les prompts des PNJ, le filtre d'intention des messages joueur, les budgets de tokens, le service LLM, les évaluations et la mesure de qualité, de tokens et de latence d'un changement de modèle ou de prompt.
+description: Ingénieur de la couche IA runtime des business games. À utiliser pour le catalogue de tâches IA, les prompts des PNJ, le filtre d'intention des messages joueur, les budgets de tokens, le service LLM et l'évaluation d'un changement de modèle ou de prompt.
 tools: Read, Edit, Write, Glob, Grep, PowerShell, Bash, WebSearch, WebFetch
 model: sonnet
 effort: medium

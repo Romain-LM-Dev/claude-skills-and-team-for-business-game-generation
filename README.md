@@ -12,7 +12,11 @@ issue du projet G-mix, généralisée pour être réutilisée dans tout projet d
 Principe : peu d'agents, des descriptions courtes, le modèle adapté à la tâche (haiku pour le mécanique, sonnet pour
 le code, opus pour la conception et l'exactitude métier), des briefs complets.
 
-Dépôt frère, équipe générique pour tout projet : [claude-skills-and-team-for-every-project](https://github.com/Romain-LM-Dev/claude-skills-and-team-for-every-project).
+L'équipe générique (orchestrateur, architecte, développeur, qa-reviewer, documentaliste, coach-equipe, skills
+`regles-equipe` et `mesure-equipe`) vient du dépôt frère
+[claude-skills-and-team-for-every-project](https://github.com/Romain-LM-Dev/claude-skills-and-team-for-every-project),
+installé automatiquement comme dépendance. Ce dépôt n'apporte que les agents et skills propres au business game ; les
+règles de relecture business game sont dans le modèle de CLAUDE.md, lu par tous les agents.
 
 ## Contenu
 
@@ -20,15 +24,10 @@ Agents du noyau (business game) :
 
 | Agent | Rôle | Modèle |
 |---|---|---|
-| `orchestrateur` | découpe, délègue, contrôle, rend un bilan ; sans outil d'édition ni shell | celui de la session |
-| `architecte` | choix transverse, ADR, contrats (spec, événements, endpoints), plan d'exécution | opus |
 | `game-designer` | justesse métier, chiffres, sources, objectifs pédagogiques, PNJ, débrief | opus |
 | `moteur-simulation` | moteur déterministe, génération depuis une spec, logique et repli des PNJ | sonnet |
 | `ia-runtime` | tâches IA, prompts des PNJ, budgets, évaluations des dialogues | sonnet |
 | `rag-knowledge` | ingestion, recherche, corpus, sources et droits | sonnet |
-| `qa-reviewer` | relit le diff, écrit les tests, lance les vérifications, joue le parcours de bout en bout | sonnet |
-| `documentaliste` | docs, CLAUDE.md, `.claude/` du projet, création d'agents | sonnet |
-| `coach-equipe` | rétrospective mesurée, trois propositions au plus | opus |
 
 Agents optionnels, selon la stack (Godot, Unity, FastAPI, Kafka, etc. ne sont que des exemples) :
 
@@ -42,11 +41,10 @@ Agents optionnels, selon la stack (Godot, Unity, FastAPI, Kafka, etc. ne sont qu
 
 Skills :
 - `moteur-business-game`, méthode du moteur (fonctions pures, spec validée, pilote automatique, calibrage, PNJ) ;
-- `business-game-designer`, conception de business games et de simulations de formation (préchargée par game-designer) ;
-- `mesure-equipe`, mesure de l'équipe sur les transcripts et contrôle de la carte de propriété (préchargée par coach-equipe).
+- `business-game-designer`, conception de business games et de simulations de formation (préchargée par game-designer).
 
 Modèles à copier dans un projet, dans `templates/` : `CLAUDE.template.md` (tableau des agents, règles d'organisation,
-brief, compte rendu, règles business game) et `ownership.example.json` (carte de propriété).
+brief, compte rendu, règles et points de relecture business game) et `ownership.example.json` (carte de propriété).
 
 Pour l'exploration en lecture seule, utiliser l'agent intégré `Explore`.
 
@@ -59,13 +57,17 @@ Plugin, une fois le dépôt publié, dans une session :
 /plugin install team-for-business-game-generation@skills-and-team-business-game
 ```
 
-Essai local sans installer : `claude --plugin-dir <dossier-du-dépôt>`. Les agents du plugin s'appellent
-`team-for-business-game-generation:orchestrateur`, etc. Les skills préchargées par un agent ne s'appliquent que
-quand l'agent est lancé en sous-agent par l'orchestrateur.
+La marketplace référence aussi `team-for-every-project`, installé avec lui comme dépendance. S'il est déjà installé
+depuis sa propre marketplace (`skills-and-team`), le désinstaller d'abord pour ne pas avoir deux copies.
+
+Essai local sans installer : `claude --plugin-dir <ce-dépôt> --plugin-dir <dépôt-every-project>`. Les agents
+s'appellent `team-for-business-game-generation:game-designer`, `team-for-every-project:orchestrateur`, etc. Les
+skills préchargées par un agent ne s'appliquent que quand l'agent est lancé en sous-agent par l'orchestrateur.
 
 Copie manuelle :
-1. copier les agents voulus de `agents/` dans `.claude/agents/` du projet (ou `~/.claude/agents/`) ;
-2. copier les dossiers de `skills/` dans `.claude/skills/` ;
+1. copier les agents voulus de `agents/` de ce dépôt et du dépôt every-project dans `.claude/agents/` du projet (ou
+   `~/.claude/agents/`) ;
+2. copier les dossiers de `skills/` des deux dépôts dans `.claude/skills/` ;
 3. copier `templates/CLAUDE.template.md` en `CLAUDE.md` à la racine du projet, le remplir, et supprimer les lignes des
    agents non installés ;
 4. copier `templates/ownership.example.json` en `.claude/ownership.json` et adapter les motifs de fichiers.
@@ -77,9 +79,9 @@ du projet, auquel ils renvoient.
 
 Il n'est pas forcé : il coûte plus qu'il n'économise sur une petite tâche. Pour un projet à plusieurs domaines :
 
-- une session : `claude --agent team-for-business-game-generation:orchestrateur` ;
+- une session : `claude --agent team-for-every-project:orchestrateur` ;
 - en permanence pour un projet : dans `.claude/settings.json` du projet,
-  `{ "agent": "team-for-business-game-generation:orchestrateur" }`.
+  `{ "agent": "team-for-every-project:orchestrateur" }`.
 
 ## Principes business game
 

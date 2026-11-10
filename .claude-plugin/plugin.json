@@ -1,8 +1,9 @@
 {
   "name": "team-for-business-game-generation",
-  "description": "Équipe d'agents pour concevoir et développer un générateur de business games (orchestrateur, architecte, game-designer, moteur de simulation, PNJ IA, sources, QA, documentation, coach), avec une skill de méthode du moteur.",
-  "version": "0.1.0",
+  "description": "Agents métier pour concevoir et développer un générateur de business games (game-designer, moteur de simulation, PNJ IA, sources, agents optionnels selon la stack) et skills de conception et de méthode du moteur. S'appuie sur l'équipe générique team-for-every-project.",
+  "version": "0.2.0",
   "author": { "name": "Romain LE MOAL" },
   "license": "SEE LICENSE IN LICENSE.md",
-  "keywords": ["agents", "business-game", "serious-game", "simulation", "orchestration"]
+  "keywords": ["agents", "business-game", "serious-game", "simulation", "orchestration"],
+  "dependencies": ["team-for-every-project"]
 }

@@ -12,7 +12,11 @@ project, generalized so it can be reused in any project of the same kind, whatev
 Principle: few agents, short descriptions, the model matched to the task (haiku for mechanical work, sonnet for
 code, opus for design and domain accuracy), and complete briefs.
 
-Sister repository, a generic team for any project: [claude-skills-and-team-for-every-project](https://github.com/Romain-LM-Dev/claude-skills-and-team-for-every-project).
+The generic team (orchestrator, architect, developer, qa-reviewer, documentaliste, coach-equipe, and the
+`regles-equipe` and `mesure-equipe` skills) comes from the sister repository
+[claude-skills-and-team-for-every-project](https://github.com/Romain-LM-Dev/claude-skills-and-team-for-every-project),
+installed automatically as a dependency. This repository only adds the business game agents and skills; the business
+game review points live in the CLAUDE.md template, which every agent reads.
 
 ## Contents
 
@@ -20,15 +24,10 @@ Core agents (business game):
 
 | Agent | Role | Model |
 |---|---|---|
-| `orchestrateur` | splits the work, delegates, checks, reports back; no editing tool or shell | the session's model |
-| `architecte` | cross-cutting decisions, ADRs, contracts (spec, events, endpoints), execution plan | opus |
 | `game-designer` | domain accuracy, figures, sources, learning objectives, NPCs, debrief | opus |
 | `moteur-simulation` | deterministic engine, generation from a spec, NPC logic and fallback | sonnet |
 | `ia-runtime` | AI tasks, NPC prompts, budgets, dialogue evaluations | sonnet |
 | `rag-knowledge` | ingestion, search, corpus, sources and rights | sonnet |
-| `qa-reviewer` | reviews the diff, writes the tests, runs the checks, plays the end-to-end flow | sonnet |
-| `documentaliste` | docs, CLAUDE.md, the project's `.claude/`, agent creation | sonnet |
-| `coach-equipe` | measured retrospective, at most three proposals | opus |
 
 Optional agents, depending on the stack (Godot, Unity, FastAPI, Kafka, etc. are only examples):
 
@@ -42,11 +41,10 @@ Optional agents, depending on the stack (Godot, Unity, FastAPI, Kafka, etc. are 
 
 Skills:
 - `moteur-business-game`, the engine method (pure functions, validated spec, autopilot, calibration, NPCs);
-- `business-game-designer`, design of business games and training simulations (preloaded by game-designer);
-- `mesure-equipe`, measures the team from transcripts and checks the ownership map (preloaded by coach-equipe).
+- `business-game-designer`, design of business games and training simulations (preloaded by game-designer).
 
 Templates to copy into a project, in `templates/`: `CLAUDE.template.md` (agent table, organization rules, brief,
-report, business game rules) and `ownership.example.json` (ownership map).
+report, business game rules and review points) and `ownership.example.json` (ownership map).
 
 For read-only exploration, use the built-in `Explore` agent.
 
@@ -59,13 +57,17 @@ As a plugin, once the repository is published, in a session:
 /plugin install team-for-business-game-generation@skills-and-team-business-game
 ```
 
-Local trial without installing: `claude --plugin-dir <dossier-du-dépôt>`. The plugin's agents are named
-`team-for-business-game-generation:orchestrateur`, and so on. Skills preloaded by an agent only apply when the
-orchestrator launches that agent as a subagent.
+The marketplace also lists `team-for-every-project`, installed with it as a dependency. If you already installed it
+from its own marketplace (`skills-and-team`), uninstall that copy first so you do not end up with two.
+
+Local trial without installing: `claude --plugin-dir <this-repo> --plugin-dir <every-project-repo>`. The agents are
+named `team-for-business-game-generation:game-designer`, `team-for-every-project:orchestrateur`, and so on. Skills
+preloaded by an agent only apply when the orchestrator launches that agent as a subagent.
 
 Manual copy:
-1. copy the agents you want from `agents/` into the project's `.claude/agents/` (or `~/.claude/agents/`);
-2. copy the folders of `skills/` into `.claude/skills/`;
+1. copy the agents you want from `agents/` in this repository and in the every-project repository into the project's
+   `.claude/agents/` (or `~/.claude/agents/`);
+2. copy the folders of `skills/` from both repositories into `.claude/skills/`;
 3. copy `templates/CLAUDE.template.md` to `CLAUDE.md` at the project root, fill it in, and delete the lines for the
    agents you did not install;
 4. copy `templates/ownership.example.json` to `.claude/ownership.json` and adapt the file patterns.
@@ -77,9 +79,9 @@ they refer to.
 
 It is not forced: on a small task it costs more than it saves. For a project with several domains:
 
-- for one session: `claude --agent team-for-business-game-generation:orchestrateur`;
+- for one session: `claude --agent team-for-every-project:orchestrateur`;
 - permanently for a project: in the project's `.claude/settings.json`,
-  `{ "agent": "team-for-business-game-generation:orchestrateur" }`.
+  `{ "agent": "team-for-every-project:orchestrateur" }`.
 
 ## Business game principles
 
