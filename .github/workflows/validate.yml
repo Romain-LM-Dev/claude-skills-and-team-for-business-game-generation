@@ -1,0 +1,12 @@
+name: validate
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm install -g @anthropic-ai/claude-code
+      - run: claude plugin validate . --strict
+      - run: pwsh ./scripts/package-skills.ps1
+      - name: package-skills.ps1 identique à celui de team-for-every-project
+        run: curl -fsSL https://raw.githubusercontent.com/Romain-LM-Dev/claude-skills-and-team-for-every-project/main/scripts/package-skills.ps1 | cmp - scripts/package-skills.ps1

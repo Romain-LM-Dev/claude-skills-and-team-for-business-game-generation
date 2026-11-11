@@ -53,8 +53,7 @@ tenir cohérente avec ce tableau.
 ## Règles d'organisation
 - Un dossier = un propriétaire ; deux agents ne modifient jamais le même fichier en même temps (parallèle seulement
   sur des fichiers disjoints). Chacun écrit les tests de son propre code.
-- Brief de délégation (un agent ne voit pas la conversation) : objectif, contexte (docs, fichiers et plages de
-  lignes, décisions), périmètre, critère de fin, compte rendu attendu.
+- Brief en cinq rubriques, choix du modèle, preuve, pause et reprise : skill `regles-equipe` (team-for-every-project).
 - Compte rendu : fait · fichiers · vérifié (commande -> résultat réel) · reste et risques. Jamais « terminé » sans
   résultat de commande ; une vérification non lancée ou en échec est écrite telle quelle.
 - Une demande sur les règles, les chiffres, les sources ou le débrief passe d'abord par `game-designer`.
@@ -62,9 +61,6 @@ tenir cohérente avec ce tableau.
   avant (échec) et après (succès).
 - Fin de chantier : `qa-reviewer` (tests complets, points de relecture ci-dessous), puis `documentaliste` si un
   comportement, un contrat ou une commande a changé.
-- Mécanique -> haiku, code -> sonnet, conception et exactitude métier -> opus.
-- Tâche sans compétence correspondante : ajouter la compétence à l'agent concerné, ou créer l'agent si le domaine
-  n'est pas couvert (brief à `documentaliste`) ; jamais `general-purpose`.
 
 ## Règles transverses business game
 - Connaissances vraies et sourcées : chaque notion et chaque chiffre est un fait sourcé, un choix de calibrage ou une

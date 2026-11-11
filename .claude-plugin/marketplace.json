@@ -2,16 +2,12 @@
   "name": "skills-and-team-business-game",
   "owner": { "name": "Romain LE MOAL" },
   "description": "Équipe d'agents et skills pour les projets de génération de business games.",
+  "allowCrossMarketplaceDependenciesOn": ["skills-and-team"],
   "plugins": [
     {
       "name": "team-for-business-game-generation",
       "source": "./",
       "description": "Agents métier pour générateur de business games (moteur déterministe, PNJ IA sourcés, rôles joueur, formateur, admin) et skills de conception et de méthode du moteur."
-    },
-    {
-      "name": "team-for-every-project",
-      "source": { "source": "github", "repo": "Romain-LM-Dev/claude-skills-and-team-for-every-project" },
-      "description": "Équipe générique (orchestrateur, architecte, développeur, relecteur, documentaliste, coach) dont dépend team-for-business-game-generation."
     }
   ]
 }

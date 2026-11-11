@@ -53,12 +53,14 @@ For read-only exploration, use the built-in `Explore` agent.
 As a plugin, once the repository is published, in a session:
 
 ```
+/plugin marketplace add Romain-LM-Dev/claude-skills-and-team-for-every-project
 /plugin marketplace add Romain-LM-Dev/claude-skills-and-team-for-business-game-generation
 /plugin install team-for-business-game-generation@skills-and-team-business-game
 ```
 
-The marketplace also lists `team-for-every-project`, installed with it as a dependency. If you already installed it
-from its own marketplace (`skills-and-team`), uninstall that copy first so you do not end up with two.
+The `team-for-every-project@skills-and-team` dependency is installed with it, or the copy you already have is reused.
+Without the first marketplace the plugin does not load ("Dependency ... is not installed"): add it and the dependency
+installs itself.
 
 Local trial without installing: `claude --plugin-dir <this-repo> --plugin-dir <every-project-repo>`. The agents are
 named `team-for-business-game-generation:game-designer`, `team-for-every-project:orchestrateur`, and so on. Skills
@@ -113,6 +115,12 @@ identical to the folder) and `description` (200 at most). Then, in claude.ai: Cu
 claude plugin validate .
 claude plugin validate . --strict
 ```
+
+GitHub CI (`.github/workflows/validate.yml`) runs strict validation and skill packaging (fails if a skill is
+skipped) on every push.
+
+Cost measured on 2026-11-10 (`claude plugin details`): about 1,080 tokens always on per session, plus about 990 for
+`team-for-every-project`.
 
 ## License
 
