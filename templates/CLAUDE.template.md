@@ -47,6 +47,9 @@ les agents métier du plugin `team-for-business-game-generation` ; installés en
 | documentaliste | sonnet | docs hors ADR, README, CLAUDE.md, `.claude/` | docs à jour, nouveaux agents |
 | coach-equipe | opus | rétros | mesurer et améliorer l'équipe (propositions appliquées après accord) |
 
+Modèles : la colonne donne le palier par défaut. Une surcharge mesurée (`/team-for-every-project:choisir-modeles`)
+s'écrit ici : `Modèles : <agent> <alias> <effort>, ...` ; elle prime sur le fichier de l'agent.
+
 Carte de propriété lisible par machine : `.claude/ownership.json` (modèle : `templates/ownership.example.json`), à
 tenir cohérente avec ce tableau.
 

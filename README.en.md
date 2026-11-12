@@ -119,8 +119,8 @@ claude plugin validate . --strict
 GitHub CI (`.github/workflows/validate.yml`) runs strict validation and skill packaging (fails if a skill is
 skipped) on every push.
 
-Cost measured on 2026-11-10 (`claude plugin details`): about 1,080 tokens always on per session, plus about 990 for
-`team-for-every-project`.
+Estimated cost (`claude plugin details`): about 1,080 tokens always on per session (2026-11-10), plus about 1,070
+for `team-for-every-project` (2026-11-12).
 
 ## License
 
